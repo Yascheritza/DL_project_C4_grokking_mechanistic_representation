@@ -6,6 +6,8 @@ __all__ = ['Config', 'HookPoint', 'Embed', 'Unembed', 'PosEmbed', 'LayerNorm', '
            'calculate_excluded_loss', 'calculate_trig_loss', 'calculate_coefficients', 'gen_train_test', 'full_loss',
            'Trainer', 'train_model']
 
+DEVICE = "cpu"
+
 # %% ../transformer.ipynb 3
 import numpy as np
 import torch as t
@@ -15,7 +17,7 @@ import time
 import torch.nn.functional as F
 import einops
 import random 
-from . import helpers 
+import helpers 
 from dataclasses import dataclass
 import os
 import wandb
@@ -53,7 +55,7 @@ class Config():
     act_type: str = 'ReLU' #@param ['ReLU', 'GeLU']
 
 
-    device: t.device = t.device("cuda")
+    device: t.device = t.device(DEVICE)
 
     # TODO ankify the privileged basis concept- a priori vs etc. ; consider writing up an explanation of privileged basis
 
