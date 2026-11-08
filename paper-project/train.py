@@ -1,9 +1,17 @@
 import transformers
+import torch
+import time
+
 
 def train_model():
-    config = transformers.Config(num_epochs = 1000)
+    DEVICE = "mps"
+    config = transformers.Config(num_epochs = 1000, device=torch.device(DEVICE))
+    print(f"device: {config.device}")
+
+    start = time.perf_counter()
     metrics = transformers.train_model(config)
-    print(metrics)
+    end = time.perf_counter()
+    print(f"Время выполнения: {end - start:.4f} секунд")
 
 
 if __name__ == "__main__":
